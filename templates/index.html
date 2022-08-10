@@ -18,6 +18,7 @@
         </form>
     </div>
 
+    {% if tasks|length > 0%}
     <table class="table table-bordered container">
         <thead>
             <tr>
@@ -44,4 +45,5 @@
             {% endfor %}
         </tbody>
     </table>
+    {% endif %}
 {% endblock %}
