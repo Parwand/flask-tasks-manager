@@ -19,8 +19,7 @@ class Task(db.Model):
 
 @app.route('/')
 def index():  # put application's code here
-    task = Task.query.order_by(Task.date_created).all()
-    return render_template("index.html", task=task)
+    return render_template("index.html")
 
 
 @app.route('/add', methods=['POST'])
@@ -29,7 +28,6 @@ def add():
         task = request.form['task']
         new_task = Task(content=task)
         try:
-            db.create_all()
             db.session.add(new_task)
             db.session.commit()
             return redirect("/")
@@ -39,3 +37,4 @@ def add():
 
 if __name__ == '__main__':
     app.run()
+    db.create_all()
