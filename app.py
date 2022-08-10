@@ -19,7 +19,11 @@ class Task(db.Model):
 
 @app.route('/')
 def index():  # put application's code here
-    return render_template("index.html")
+    try:
+        tasks = Task.query.order_by(Task.date_created).all()
+        return render_template("index.html", tasks=tasks)
+    except:
+        return render_template("index.html")
 
 
 @app.route('/add', methods=['POST'])
