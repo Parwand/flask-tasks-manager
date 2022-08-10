@@ -39,6 +39,19 @@ def add():
             return "There was an issues where adding your input"
 
 
+@app.route("/delete", methods=['POST'])
+def delete():
+    task_id = request.form['task_id']
+    print(task_id)
+    try:
+        task = Task.query.get_or_404(task_id)
+        db.session.delete(task)
+        db.session.commit()
+        return redirect('/')
+    except:
+        return "There was an issues deleting your task"
+
+
 if __name__ == '__main__':
     app.run()
     db.create_all()
