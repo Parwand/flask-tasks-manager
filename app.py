@@ -9,7 +9,6 @@ db = SQLAlchemy(app)
 
 # create a task model for database
 class Task(db.Model):
-    db.create_all()
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(200), nullable=False)
     date_created = db.Column(db.DateTime, default=datetime.utcnow())
@@ -29,6 +28,7 @@ def index():  # put application's code here
 
 @app.route('/add', methods=['POST'])
 def add():
+    db.create_all()
     if request.method == 'POST':
         task = request.form['task']
         new_task = Task(content=task)
