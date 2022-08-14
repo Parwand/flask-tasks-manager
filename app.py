@@ -9,6 +9,7 @@ db = SQLAlchemy(app)
 
 # create a task model for database
 class Task(db.Model):
+    db.create_all()
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(200), nullable=False)
     date_created = db.Column(db.DateTime, default=datetime.utcnow())
@@ -73,4 +74,3 @@ def post_update():
 
 if __name__ == '__main__':
     app.run()
-    db.create_all()
