@@ -1,3 +1,5 @@
+import time
+
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -30,6 +32,7 @@ def index():  # put application's code here
 @app.route('/add', methods=['POST'])
 def add():
     db.create_all()
+    time.sleep(50)
     if request.method == 'POST':
         task = request.form['task']
         new_task = Task(content=task)
